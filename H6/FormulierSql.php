@@ -1,16 +1,29 @@
-
 <?php
 
-$user = 'root';
-$pass = '';
+// connectie met de DB en kijken of dat lukt
+$conn = mysqli_connect("127.0.0.1", "root", "", "phpopdracht", "3308");
 
-try {
-    $dbh = new PDO('mysql:host=localhost;dbname=school2; port=3308', $user, $pass);
-    foreach ($dbh -> query('SELECT * from cursist') as $row) {
-        print_r($row);
+if ($conn -> connect_errno) {
+    echo "Failed to connect to MySQL: " . $conn->connect_error;
+    exit();
+}
+//sql query bekijken en naar de DB sturen
+$querry = "SELECT * FROM login";
+$result = $conn->query($querry);
+
+//kijken of de invoer van de user in de DB staat
+while ($data = $result->fetch_assoc()) {
+    if ($_POST['inlognaam'] == $data['loginnaam'] && $_POST['wachtwoord'] == $data['wachtwoord']){
+        $login = true;
+        break 1;
+    } else {
+        $login = false;
+
     }
-    $dbh = null;
-} catch (PDOException $e) {
-    print_r("Error!: " . $e->getMessage() . "<br>");
-    die();
+}
+//wat er wordt gedaan met de data
+if ($login){
+    echo "Welkom ".$data['loginnaam'];
+} elseif (!$login){
+    echo "Sorry, geen toegang!";
 }
