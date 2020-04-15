@@ -2,9 +2,9 @@
 session_start();
 
 $users = array(
-    "piet@worldonline.nl" => array('wachtwoord' => 'doetje123', 'rol' => 'Administrator'),
-    "klaas@carpets.nl" => array('wachtwoord' => 'snoepje777', 'rol' => 'Gebruiker'),
-     "truushendriks@wegweg.nl" => array('wachtwoord' => 'arkiearkie201', 'rol' => 'Administrator')
+    "piet@worldonline.nl" => array('wachtwoord' => 'doetje123', 'rol' => 'administrator'),
+    "klaas@carpets.nl" => array('wachtwoord' => 'snoepje777', 'rol' => 'gebruiker'),
+     "truushendriks@wegweg.nl" => array('wachtwoord' => 'arkiearkie201', 'rol' => 'administrator')
 );
 
 if (isset($_GET['loguit'])) {
